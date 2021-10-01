@@ -21,7 +21,11 @@ let bx = 500;
 let by = 500; 
 let speed = 5; 
 let sonicRun, sonicJump;
-let state; 
+let state = "run"; 
+let lastTimeSwitched = 0; 
+let blockDuration = 10; 
+let blockSpawn = true;
+let blockSpot = 50;
 
 function preload(){
   sonicRun = loadImage("assets/sonicRun.gif");
@@ -86,5 +90,11 @@ function jumpSonic(){
 
 
 function blocks(){
-  rect(bx, by, 50, 50);
+  blockSpot = random(1, 3)
+  if (blockSpawn === true && millis() > lastTimeSwitched + blockDuration){
+    bx -= speed;
+    lastTimeSwitched = millis();
+  }
+  fill("black");
+  rect(bx, by, blockSpot);
 }
