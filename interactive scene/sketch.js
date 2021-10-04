@@ -125,6 +125,7 @@ function blocks(){
   rect(bx, by, 50, 50);
 }
 
+//when the sonic hits ablock he dies, this is how
 function hitBlock(){
   hit = collidePointRect(50, y + 50,  bx, by, 50, 50);
   if (state === "run" && hit ){
