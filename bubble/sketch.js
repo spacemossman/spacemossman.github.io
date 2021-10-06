@@ -1,57 +1,51 @@
-// Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
-
+// Bubble Demo
 
 let theBubbles = [];
 
-
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-
-  
+  createCanvas(windowWidth, windowHeight); 
 }
 
 function draw() {
-  background(220);
+  background("white");
   bubbleUp();
   displayBubble();
 }
 
-
-function bubbleUp(){
-  for(let bubble of theBubbles){
-    bubble.x = random(-5, 5);
-    bubble.y += bubble.dy;
-  }
-}
-
-function mousePressed(){
-  for (let i = 0; i<5; i++ ){
-
+function mousePressed() {
+  for (let i=0; i<5; i++) {
     spawnBubble();
   }
 }
 
-function spawnBubble(){
+function spawnBubble() {
   let bubble = {
     x: random(width),
-    y: height/2,
+    y: height,
     radius: random(20, 50),
     dx: 0,
     dy: -3,
-    theColour: color(random(255), random(255), random(255)),
+    theColor: color(random(255), random(255), random(255), random(255)),
+    theTime: random(1000),
   };
   theBubbles.push(bubble);
 }
 
-function displayBubble(){
-  for(let bubble of theBubbles){
+function bubbleUp() {
+  for (let bubble of theBubbles) {
+    bubble.y += bubble.dy;
+  
+    //jitter sideways
+    // bubble.x += random(-5, 5);
+    bubble.x = noise(bubble.theTime) * width;
+    bubble.theTime += 0.005;
+  }
+}
+
+function displayBubble() {
+  for (let bubble of theBubbles) {
     noStroke();
-    fill(bubble.theColour);
+    fill(bubble.theColor);
     circle(bubble.x, bubble.y, bubble.radius*2);
   }
 }
