@@ -8,7 +8,7 @@
 // Game of Life
 
 let grid;
-let gridSize = 40;
+let gridSize = 60;
 let cellWidth, cellHeight;
 let autoplay = false;
 
@@ -52,6 +52,9 @@ function keyPressed(){
   }
   if(key === "p"){
     autoplay = !autoplay; 
+  }
+  if (key === "g"){
+    grid = gun;
   }
 }
 
