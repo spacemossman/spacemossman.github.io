@@ -7,13 +7,11 @@
 
 
 
-let gridSize = 30; 
+let gridSize = 4; 
 let grid;
 let mySound;
 
-function preload(){
-  
-}
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
