@@ -7,6 +7,8 @@
 
 let gridSize = 4; 
 let grid;
+let cellSize;
+let twentyfortyeight; 
 
 
 function setup() {
@@ -20,19 +22,24 @@ function draw() {
   displayGrid();
 }
 
+function numbers2048(){
+ 
+}
+
 function displayGrid(){
   let cellWidth = width/gridSize;
   let cellHeight = height/gridSize;
 
   for (let y = 0; y<gridSize; y++){
     for(let x = 0; x<gridSize; x++){
-      if(grid[y][x] === 0){
-        fill("white");
-      }
-      else if(grid[y][x] === 1){
-        fill("black");
-      }
+      fill("white");
+      strokeWeight(1);
       rect(x*cellWidth, y * cellHeight, cellWidth, cellHeight);
+
+      fill("black");
+      textSize()
+
+      }
     }
   }
 }
