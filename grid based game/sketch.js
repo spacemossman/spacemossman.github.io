@@ -22,9 +22,6 @@ function draw() {
   displayGrid();
 }
 
-function numbers2048(){
- 
-}
 
 function displayGrid(){
   let cellWidth = width/gridSize;
@@ -37,9 +34,28 @@ function displayGrid(){
       rect(x*cellWidth, y * cellHeight, cellWidth, cellHeight);
 
       fill("black");
-      textSize()
+      textSize(cellSize*0.75);
+      textAlign(CENTER, CENTER);
+      text(grid[y][x], x*cellSize + cellSize/2, y*cellSize + cellSize/2);
+     
 
-      }
+    }
+  }
+}
+
+function numbers2048(){
+  
+  if (keyIsPressed){
+    for (let y = 0; y<gridSize; y++){
+      for(let x = 0; x<gridSize; x++){
+        if(keyCode === 38 && grid[y][x] === grid[y + 1][x]){
+          grid[y][x] = 0;
+          grid[y + 1][x] = grid[y+1][x]*grid[y+1];
+        }
+        else if (keyCode === 40 && grid[y][x] === grid[y][x +1]){
+
+
+        }
     }
   }
 }
