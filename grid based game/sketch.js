@@ -63,11 +63,10 @@ function numbers2048(){
           grid[y][x] = 0;
           grid[y - 1][x] = grid[y- 1][x]*grid[y -1];
         }
-        //
+        // down arrow key
         else if (keyCode === 40 && grid[y][x] === grid[y][x +1]){
           grid[y][x] = 0;
           grid[y + 1][x] = grid[y+1][x]*grid[y+1][x];
-
         }
       }
     }
