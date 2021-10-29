@@ -53,9 +53,9 @@ function keyPressed(){
   if(key === "p"){
     autoplay = !autoplay; 
   }
-  if (key === "g"){
-    grid = gun;
-  }
+  // if (key === "g"){
+  //   grid = gun;
+  // }
 }
 
 function nextTurn(){
