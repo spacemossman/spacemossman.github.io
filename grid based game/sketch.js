@@ -27,6 +27,10 @@ function draw() {
   displayGrid();
 }
 
+function keyPressed() {
+  numbers2048();
+}
+
 
 function displayGrid(){
   let cellWidth = width/gridSize;
@@ -40,12 +44,11 @@ function displayGrid(){
       rect(x*cellWidth, y * cellHeight, cellWidth, cellHeight);
 
 
-      numbers2048();
 
       if(grid[y][x] !== 0){
 
         fill("black");
-        textSize(cellSize*0.75);
+        textSize(cellSize*0.5);
         textAlign(CENTER, CENTER);
         text(grid[y][x], x*cellSize + cellSize/2, y*cellSize + cellSize/2);
       }
@@ -58,40 +61,55 @@ function displayGrid(){
 
 function numbers2048(){
   // let newTable = createEmpty2DArray(gridSize,gridSize);
-  if (keyIsPressed){
-    for (let y = 0; y<gridSize; y++){
-      for(let x = 0; x<gridSize; x++){
-        
-        
-        for (let i =- 1; i <= 1; i++){
-          for(let j =- 1; j <= 1; j++){
-            if (y + i >= 0 && x + j >= 0 && y + i < gridSize && x + j < gridSize ){
-        
-              // up arrow key
-              if(keyCode === 38 && grid[y][x] === grid[y + 1][x]){
-                grid[y][x] = 0;
-                grid[y +  1][x] = grid[y- 1][x]*grid[y -1][x];
-              }
-              // down arrow key
-              else if (keyCode === 40 && grid[y][x] === grid[y - 1][x]){
-                grid[y][x] = 0;
-                grid[y - 1][x] = grid[y+1][x]*grid[y+1][x];
-              }
-              // left arrow key
-              else if(keyCode === 39 && grid[y][x] === grid[y][x + 1]){ 
-                grid[y][x] = 0;
-                grid[y][x + 1] = grid[y][x + 1]*grid[y][x + 1]; 
-              }
-              else if (keyCode === 37&& grid[y][x] === grid[y][x - 1]){
-                grid[y][x] = 0;
-                grid[y][x - 1] = grid[y][x - 1]*grid[y][x - 1]; 
-              }
-            }
-          }
+ 
+  for (let y = 0; y<gridSize; y++){
+    for(let x = 0; x<gridSize; x++){
+      
+
+      if(x >= 0 && x <= gridSize && y >= 0 && y <= gridSize){
+
+        // up arrow key and same number
+        if(keyCode === 38 && grid[y][x] === grid[y - 1][x]){
+          grid[y][x] = 0;
+          grid[y -  1][x] = grid[y - 1][x]*grid[y - 1][x];
+        }
+        if(keyCode === 38 && grid[y][x] !== grid[y - 1][x]){
+          grid[y -  1][x] = grid[y][x];
+          grid[y][x] = 0;
+        }
+        // down arrow key and same number besides
+        else if (keyCode === 40 && grid[y][x] === grid[y + 1][x]){
+          grid[y][x] = 0;
+          grid[y - 1][x] = grid[y - 1][x]*grid[y - 1][x];
+        }
+        else if(keyCode === 40 && grid[y][x] !== grid[y + 1][x]){
+          grid[y +  1][x] = grid[y][x];
+          grid[y][x] = 0;
+        }
+        // left arrow key and same number besides
+        else if(keyCode === 39 && grid[y][x] === grid[y][x - 1]){ 
+          grid[y][x] = 0;
+          grid[y][x - 1] = grid[y][x - 1]*grid[y][x - 1]; 
+        }
+        else if(keyCode === 39 && grid[y][x] !== grid[y - 1][x]){
+          grid[y -  1][x] = grid[y][x];
+          grid[y][x] = 0;
+        }
+        // right arrow key and same number besides
+        else if (keyCode === 37 && grid[y][x] === grid[y][x + 1]){
+          grid[y][x] = 0;
+          grid[y][x + 1] = grid[y][x + 1]*grid[y][x + 1]; 
+        }
+        else if(keyCode === 37 && grid[y][x] !== grid[y + 1][x]){
+          grid[y +  1][x] = grid[y][x];
+          grid[y][x] = 0;
         }
       }
     }
-  } 
+  }
+      
+    
+  
   // grid  = newTable;
 }
 
