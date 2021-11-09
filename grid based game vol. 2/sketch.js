@@ -5,8 +5,8 @@
 
 let grid = [
   [0, 0, 0,  0, 0, 0,  0, 0, 0],// how the grid will show up on screen with the cage lines
-  [2, 0, 0,  0, 0, 0,  0, 0, 0],
   [0, 0, 0,  0, 0, 0,  0, 0, 0],
+  [1, 0, 0,  0, 0, 0,  0, 0, 0],
 
   [0, 0, 0,  0, 0, 0,  0, 0, 0],
   [0, 0, 0,  0, 0, 0,  0, 0, 0],
@@ -124,9 +124,9 @@ function winCondition(){
       for(let b = 0; b<gridSize; b++){
 
         if(grid[i][b] === 1 && grid[i][b]){
-
+          grid;
         }
-     }
+      }
     }
   }
 }
