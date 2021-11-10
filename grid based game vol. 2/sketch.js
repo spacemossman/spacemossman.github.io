@@ -6,7 +6,7 @@
 let grid = [
   [0, 0, 0,  0, 0, 0,  0, 0, 0],// how the grid will show up on screen with the cage lines
   [0, 0, 0,  0, 0, 0,  0, 0, 0],
-  [1, 0, 0,  0, 0, 0,  0, 0, 0],
+  [0, 0, 0,  0, 0, 0,  0, 0, 0],
 
   [0, 0, 0,  0, 0, 0,  0, 0, 0],
   [0, 0, 0,  0, 0, 0,  0, 0, 0],
@@ -43,12 +43,15 @@ function draw() {
 
 // when mouse pressed an x or a o appears where the mouse is clicked, and it also tells who's turn it is
 function mousePressed(){
+  let cellX  = Math.floor(mouseX/cellWidth);
+  let cellY = Math.floor(mouseY/cellHeight);
+  
   if (player1){
-    player1Turn(mouseX, mouseY);
+    player1Turn(cellX, cellY);
   }
 
   else if(player2){
-    player2Turn(mouseX, mouseY);
+    player2Turn(cellX, cellY);
   }
 }
 
@@ -130,3 +133,12 @@ function winCondition(){
     }
   }
 }
+
+// function lastSum(someArray){
+//   let sum = 0;
+//   for(let i = 0; i<someArray.length; i++){
+//     let last = someArray[i][someArray[i].length - 1];
+//     sum += last;
+//   }
+//   return sum;
+//}
