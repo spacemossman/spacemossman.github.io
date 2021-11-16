@@ -4,25 +4,20 @@
  
 
 let grid = [
-  [0, 0, 0,  0, 0, 0,  0, 0, 0],// how the grid will show up on screen with the cage lines
-  [0, 0, 0,  0, 0, 0,  0, 0, 0],
-  [0, 0, 0,  0, 0, 0,  0, 0, 0],
-
-  [0, 0, 0,  0, 0, 0,  0, 0, 0],
-  [0, 0, 0,  0, 0, 0,  0, 0, 0],
-  [0, 0, 0,  0, 0, 0,  0, 0, 0],
-
-  [0, 0, 0,  0, 0, 0,  0, 0, 0],
-  [0, 0, 0,  0, 0, 0,  0, 0, 0],
-  [0, 0, 0,  0, 0, 0,  0, 0, 0],
+  [0, 0, 0],
+  [0, 0, 0],
+  [0, 0, 0],
 ];
 // global varibles, how big the cells are, which players turn it is and the counter for spare tiles. 
 let cellWidth, cellHeight;
 let cellSize; 
-let gridSize = 9;
+let gridSize = 3;
 let player1 = true;
 let player2 = false;
 let counter = 0;
+let winnerX = false; 
+let winnerY = false;
+let winCounter = 0;
 
 
 //calculating the values for cell width, height and size
@@ -78,7 +73,6 @@ function displayGrid(){
       }
     }
   }
-  drawCageLines();
 }
 
 
@@ -86,7 +80,7 @@ function displayGrid(){
 function player1Turn(x, y){
   if (x >= 0 && x <= gridSize && y >= 0 && y <= gridSize){
 
-    if (grid[x][y] === 0 && grid[x][y] !== 2 && counter !== 81){
+    if (grid[x][y] === 0 && grid[x][y] !== 2 && counter !== 9){
       grid[x][y] = 1;
     }
     player2 = true;
@@ -100,7 +94,7 @@ function player1Turn(x, y){
 function player2Turn(x, y){
   if (x >= 0 && x <= gridSize && y >= 0 && y <= gridSize){
 
-    if(grid[x][y] === 0 && grid[x][y] !== 1 && counter !== 81){
+    if(grid[x][y] === 0 && grid[x][y] !== 1 && counter !== 9){
       grid[x][y] = 2;
     }
     player1 = true;
@@ -110,29 +104,20 @@ function player2Turn(x, y){
   }
 }
 
-// these show the cage lines around the grid 
-function drawCageLines(){
-  strokeWeight(4);
 
-  for(let location = 0; location <= 9; location+= 3){
-    line(0, cellSize*location, width, cellSize*location);
-    line(cellSize*location, 0, cellSize*location, height);
-  }
-}
 
 // how the score is counted
 function winCondition(){
   if (counter === 81){
     for (let i = 0; i<gridSize; i++){
-      for(let b = 0; b<gridSize; b++){
-
-        if(grid[i][b] === 1 && grid[i][b]){
-          grid;
-        }
-      }
+      let last = grid[i][grid[i].length -1 ];
+      winCounter += last;
     }
+
+    
   }
 }
+
 
 // function lastSum(someArray){
 //   let sum = 0;
