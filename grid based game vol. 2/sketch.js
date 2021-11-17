@@ -16,7 +16,7 @@ let player1 = true;
 let player2 = false;
 let counter = 0;
 let winnerX = false; 
-let winnerY = false;
+let winnerO = false;
 let winCounter = 0;
 
 
@@ -34,6 +34,7 @@ function draw() {
 
   displayGrid();
   winCondition();
+  winTimes();
 }
 
 // when mouse pressed an x or a o appears where the mouse is clicked, and it also tells who's turn it is
@@ -108,22 +109,41 @@ function player2Turn(x, y){
 
 // how the score is counted
 function winCondition(){
-  if (counter === 81){
-    for (let i = 0; i<gridSize; i++){
-      let last = grid[i][grid[i].length -1 ];
-      winCounter += last;
+  for(let i = 0; i<gridSize; i++){
+    if (grid[i] === grid[i + 1] && grid[i +1 ] === grid[i + 2]){
+      if(grid[i]=== 1){
+        winnerX = true;
+      }
+      else if (grid[i] === 2){
+        winnerO = true;
+      }
     }
-
-    
+  }
+  for(let i = 0; i<gridSize; i++){
+    for(let b = 0; b<gridSize; b++){
+      if (grid[i][b] === grid[i][b + 1] && grid[i][b + 1] === grid[i][b + 2]){
+        if(grid[i][b]=== 1){
+          winnerX = true;
+        }
+        else if (grid[i][b] === 2){
+          winnerO = true;
+        }
+      }
+    }
   }
 }
 
-
-// function lastSum(someArray){
-//   let sum = 0;
-//   for(let i = 0; i<someArray.length; i++){
-//     let last = someArray[i][someArray[i].length - 1];
-//     sum += last;
-//   }
-//   return sum;
-//}
+function winTimes(){
+  if(winnerO === true){
+    fill("black");
+    textSize(cellSize*0.5);
+    textAlign(CENTER, CENTER);
+    text("Player 2 wins!",  50, 50, width/2, height/2);
+  }
+  else if (winnerX === true){
+    fill("black");
+    textSize(cellSize*0.5);
+    textAlign(CENTER, CENTER);
+    text("Player 1 wins!",  50, 50, width/2, height/2);
+  }
+}
