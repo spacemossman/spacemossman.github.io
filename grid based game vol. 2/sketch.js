@@ -110,23 +110,27 @@ function player2Turn(x, y){
 // how the score is counted
 function winCondition(){
   for(let i = 0; i<gridSize; i++){
-    if (grid[i] === grid[i + 1] && grid[i +1 ] === grid[i + 2]){
-      if(grid[i]=== 1){
-        winnerX = true;
-      }
-      else if (grid[i] === 2){
-        winnerO = true;
+    if(i >= -1 && i <= gridSize + 1){
+      if (grid[i] === grid[i + 1] && grid[i +1 ] === grid[i + 2]){
+        if(grid[i]=== 1){
+          winnerX = true;
+        }
+        else if (grid[i] === 2){
+          winnerO = true;
+        }
       }
     }
   }
   for(let i = 0; i<gridSize; i++){
     for(let b = 0; b<gridSize; b++){
-      if (grid[i][b] === grid[i][b + 1] && grid[i][b + 1] === grid[i][b + 2]){
-        if(grid[i][b]=== 1){
-          winnerX = true;
-        }
-        else if (grid[i][b] === 2){
-          winnerO = true;
+      if(i >= 0 && i <= gridSize && b >= 0 && b <= gridSize){
+        if (grid[i][b] === grid[i][b + 1] && grid[i][b + 1] === grid[i][b + 2]){
+          if(grid[i][b]=== 1){
+            winnerX = true;
+          }
+          else if (grid[i][b] === 2){
+            winnerO = true;
+          }
         }
       }
     }
@@ -136,14 +140,14 @@ function winCondition(){
 function winTimes(){
   if(winnerO === true){
     fill("black");
-    textSize(cellSize*0.5);
+    textSize(25);
     textAlign(CENTER, CENTER);
-    text("Player 2 wins!",  50, 50, width/2, height/2);
+    text("Player 2 wins!",  75, 50);//, 50, 50);
   }
   else if (winnerX === true){
     fill("black");
-    textSize(cellSize*0.5);
+    textSize(25);
     textAlign(CENTER, CENTER);
-    text("Player 1 wins!",  50, 50, width/2, height/2);
+    text("Player 1 wins!",  75, 50);//, 50, 50);
   }
 }
