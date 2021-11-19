@@ -17,7 +17,6 @@ let player2 = false;
 let counter = 0;
 let winnerX = false; 
 let winnerO = false;
-let winCounter = 0;
 
 
 //calculating the values for cell width, height and size
@@ -39,6 +38,7 @@ function draw() {
 
 // when mouse pressed an x or a o appears where the mouse is clicked, and it also tells who's turn it is
 function mousePressed(){
+  //
   let cellX  = Math.floor(mouseX/cellWidth);
   let cellY = Math.floor(mouseY/cellHeight);
   
@@ -109,21 +109,22 @@ function player2Turn(x, y){
 
 // how the score is counted
 function winCondition(){
+  //this is the part where it all goes wrong, i cant get the sideways wins to work, and i dont have time for the diagonal.
+  // im sorry 
   for(let i = 0; i<gridSize; i++){
-    if(i >= -1 && i <= gridSize + 1){
-      if (grid[i] === grid[i + 1] && grid[i +1 ] === grid[i + 2]){
-        if(grid[i]=== 1){
-          winnerX = true;
-        }
-        else if (grid[i] === 2){
-          winnerO = true;
-        }
+    if (grid[i] === grid[i + 1] && grid[i + 1] === grid[i + 2]){
+      if(grid[i] === 1){
+        winnerX = true;
       }
+      else if (grid[i] === 2){
+        winnerO = true;
+      }  
     }
   }
+  // this part works just fine though
   for(let i = 0; i<gridSize; i++){
     for(let b = 0; b<gridSize; b++){
-      if(i >= 0 && i <= gridSize && b >= 0 && b <= gridSize){
+      if(i >= 0 && i <= gridSize && b >= 0 && b <= gridSize){   
         if (grid[i][b] === grid[i][b + 1] && grid[i][b + 1] === grid[i][b + 2]){
           if(grid[i][b]=== 1){
             winnerX = true;
@@ -137,6 +138,7 @@ function winCondition(){
   }
 }
 
+//this is what happens when a player wins, text displays on the top left corner of the screen
 function winTimes(){
   if(winnerO === true){
     fill("black");
